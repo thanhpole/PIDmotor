@@ -87,7 +87,7 @@ void loop()
       target_speed = s.toDouble();
     }
 
-    Serial.println(target_speed);
+    //Serial.println(target_speed);
     // s="";
   }
 
@@ -144,6 +144,7 @@ void loop()
     digitalWrite(CW, LOW);
     analogWrite(4, 0);
     s = "";
+    Serial.println("0");
   }
 }
 
