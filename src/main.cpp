@@ -9,22 +9,18 @@
 
 #define ENC_IN_RIGHT_B 18
 
-// True = Forward; False = Reverse
 boolean Direction_right = true;
 
-// Keep track of the number of right wheel pulses
-volatile long right_wheel_pulse_count = 0;
+volatile long right_wheel_pulse_count = 0; // xung encoder A
 
 int interval = 120;
 
 double pwm_output;
 double target_speed = 300;
 
-// Counters for milliseconds during interval
 long previousMillis = 0;
 long currentMillis = 0;
 
-// Variable for RPM measuerment
 double rpm_right = 0;
 
 void right_wheel_pulse();
@@ -45,17 +41,16 @@ void setup()
   Serial.setTimeout(1000);
   attachInterrupt(digitalPinToInterrupt(ENC_IN_RIGHT_A), right_wheel_pulse, RISING);
 }
-char c;
+
 String s, lastS;
 
 void loop()
 {
   if (Serial.available())
   {
-    // c = Serial.read();
+
     s = Serial.readStringUntil('\n');
 
-    // Serial.println(s);
     switch (s.toInt())
     {
     case 2:
@@ -86,9 +81,6 @@ void loop()
     {
       target_speed = s.toDouble();
     }
-
-    //Serial.println(target_speed);
-    // s="";
   }
 
   if (target_speed <= 300)
@@ -100,7 +92,6 @@ void loop()
     myPID.SetTunings(0.19, 0.12, 0.05);
   }
 
-  // target_speed=200;
   if (s.toInt() == 12 || s.toInt() == 13)
   {
     if (s[1] == '2')
@@ -115,7 +106,7 @@ void loop()
     }
 
     currentMillis = millis();
-    // target_speed = 200;
+
     if (currentMillis - previousMillis >= interval)
     {
 
@@ -123,9 +114,6 @@ void loop()
 
       rpm_right = (float)(right_wheel_pulse_count * 486.36 / ENC_COUNT_REV);
 
-      // Serial.print(" Pulses: ");
-      // Serial.println(right_wheel_pulse_count);
-      // Serial.print(" Speed: ");
       rpm_right = abs(rpm_right);
       Serial.print(rpm_right);
 
@@ -135,7 +123,6 @@ void loop()
       myPID.Compute();
     }
     analogWrite(4, pwm_output);
-    // s="";
   }
 
   else if (s[0] == '0')
@@ -159,9 +146,6 @@ void motor_run(double speed)
 
     rpm_right = (float)(right_wheel_pulse_count * 486.36 / ENC_COUNT_REV);
 
-    // Serial.print(" Pulses: ");
-    // Serial.println(right_wheel_pulse_count);
-    // Serial.print(" Speed: ");
     rpm_right = abs(rpm_right);
     Serial.print(rpm_right);
 
