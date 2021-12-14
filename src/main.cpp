@@ -97,7 +97,7 @@ void loop()
   }
   else
   {
-    myPID.SetTunings(0.19, 0.13, 0.05);
+    myPID.SetTunings(0.19, 0.12, 0.05);
   }
 
   // target_speed=200;
