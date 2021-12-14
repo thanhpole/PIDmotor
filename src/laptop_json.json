@@ -1,0 +1,159 @@
+[
+    {
+        "id": "a0931f84e63bccfb",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c840624d90d14fba",
+        "type": "serial in",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "serial": "3733b07f70bfb833",
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "fd9d71cf461ac512"
+            ]
+        ]
+    },
+    {
+        "id": "a088317d81b54cc6",
+        "type": "serial out",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "serial": "3733b07f70bfb833",
+        "x": 660,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "fd9d71cf461ac512",
+        "type": "rbe",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "5727ef891cef6433"
+            ]
+        ]
+    },
+    {
+        "id": "57537a56192774d7",
+        "type": "mqtt in",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "topic": "command",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "7a5707733381049a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 480,
+        "wires": [
+            [
+                "a088317d81b54cc6"
+            ]
+        ]
+    },
+    {
+        "id": "5727ef891cef6433",
+        "type": "mqtt out",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "topic": "speed",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7a5707733381049a",
+        "x": 650,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2847e871143f51d5",
+        "type": "mqtt in",
+        "z": "a0931f84e63bccfb",
+        "name": "",
+        "topic": "speedControl",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "7a5707733381049a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "a088317d81b54cc6"
+            ]
+        ]
+    },
+    {
+        "id": "3733b07f70bfb833",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "7a5707733381049a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "",
+        "port": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "3",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
